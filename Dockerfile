@@ -5,7 +5,7 @@ RUN apt-get update && \
     curl -L https://cpanmin.us | perl - App::cpanminus
 
 
-RUN git clone https://github.com/rjust/defects4j.git 
+RUN git clone https://github.com/rjust/defects4j.git && git clone https://github.com/rohanpadhye/jqf && git clone https://github.com/jyi/DefectRepairing.git 
 
 WORKDIR /defects4j
 RUN git checkout tags/v1.3.0 -b right_ver
@@ -18,19 +18,20 @@ CMD defects4j info -p Lang
 RUN apt-get install -y python3-pip 
 RUN  pip3 install unidiff
 
-WORKDIR /
 
-RUN git clone https://github.com/Ultimanecat/DefectRepairing.git
-WORKDIR DefectRepairing
+WORKDIR /DefectRepairing/tool/source
 
 
-WORKDIR tool/source
 
 RUN make build
 
-WORKDIR ..
+WORKDIR /DefectRepairing/tool
 
 RUN cp -frap defects4j-mod/framework/ /defects4j
 
 CMD defects4j info -p Lang
 
+
+WORKDIR /jqf
+
+RUN mvn package
