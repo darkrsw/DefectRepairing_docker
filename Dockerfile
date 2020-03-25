@@ -3,7 +3,7 @@ FROM openjdk:8-jdk
 RUN apt-get update && \
     apt-get install -y build-essential && \
     curl -L https://cpanmin.us | perl - App::cpanminus
-RUN apt-get update && apt-get install maven
+RUN apt-get update && apt-get install -y maven
 
 RUN git clone https://github.com/rjust/defects4j.git && git clone https://github.com/rohanpadhye/jqf && git clone https://github.com/jyi/DefectRepairing.git 
 
