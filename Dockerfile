@@ -4,7 +4,7 @@ RUN apt-get update && \
     apt-get install -y build-essential && \
     curl -L https://cpanmin.us | perl - App::cpanminus
 RUN apt-get update && apt-get install -y maven && apt-get install -y vim
-RUN apt-get install ctags graphviz netpbm texlive texinfo
+RUN apt-get install -y ctags graphviz netpbm texlive texinfo
 
 RUN git clone https://github.com/rjust/defects4j.git && git clone https://github.com/rohanpadhye/jqf && git clone https://github.com/jyi/DefectRepairing.git && git clone https://github.com/codespecs/daikon.git 
 
