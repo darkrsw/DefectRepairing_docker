@@ -36,11 +36,14 @@ WORKDIR /jqf
 
 RUN mvn package
 
-WORKDIR /daikon_new
+WORKDIR /daikon
 
 RUN apt-get update && wget http://plse.cs.washington.edu/daikon/download/daikon-5.7.2.tar.gz && tar zxf daikon-5.7.2.tar.gz
 
-RUN echo "export DAIKONDIR=/daikon_new/daikon-5.7.2" >> ~/.bashrc
+RUN echo "export DAIKONDIR=/daikon/daikon-5.7.2" >> ~/.bashrc
 RUN echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> ~/.bashrc
 
 RUN make -C $DAIKONDIR rebuild-everything
+WORKDIR /daikon
+RUN make compile
+RUN make doc-all
